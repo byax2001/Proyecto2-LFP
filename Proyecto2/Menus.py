@@ -39,14 +39,14 @@ class Menu:
         print("7.Salir")
 
 
-    def OpcionCorrecta(self):
+    def OpcionCorrecta(self,Nopcionmaxima):
         try:
             opcion = int(input('Ingrese una opcion: '))
-            if opcion > 3 or opcion < 1:
+            if opcion > Nopcionmaxima or opcion < 1:
                 opcion = int(input(("Opcion incorrecta ingrese otra: ")))
         except:
             opcion = int(input(("Opcion incorrecta ingrese otra: ")))
-            if opcion > 3 or opcion < 1:
+            if opcion > Nopcionmaxima or opcion < 1:
                 opcion = int(input(("Opcion incorrecta ingrese otra: ")))
         return opcion
 
