@@ -8,7 +8,7 @@ class PdfPilaAutomata:
         self.lista=listapilaautomata
 
     def reporte(self):
-        index=PdfPilaAutomata.existe()
+        index=PdfPilaAutomata.existe(self)
         if index==-1:
             print("No existe dicho automata de pila")
         else:
@@ -54,33 +54,35 @@ class PdfPilaAutomata:
 #ESTADO FINAL
             estadofinal=l[5]
             cuerpotexto.textLine("Estado de Aceptación={" + estadofinal + "}")
+        pdf.drawText(cuerpotexto)
+        PdfPilaAutomata.generarImagen(l)
+        pdf.drawImage(f"{l[0]}.png", w - (w / 2) - 220, h - 90 - 210, width=480, height=100)
+        pdf.save()
+        os.system(f"{l[0]}.pdf")
 
 
-    def generarImagen(transiciones):
-        listaafd=afdescogido
-        listatransiciones=listaafd[5]
-        listaestados=listaafd[1]
-        nombre=listaafd[0]
+    def generarImagen(listaescogida):
+        listatransiciones=listaescogida[6]
+        listaestados=listaescogida[3]
+        nombre=listaescogida[0]
         archivo=open(f"{nombre}.dot","w")
         archivo.write("digraph "+nombre+"{\n")
         archivo.write('node[style="filled", shape=circle, fillcolor="white"];\n')
         archivo.write('rankdir=LR;')
         for i in listaestados:
             n=0
-            for z in listaafd[4]:
+            for z in listaescogida[5]:
                 if z==i:
                     n+=1
             if n>0:
                 archivo.write(f'{i}[label="{i}",shape="doublecircle"];\n')
             else:
                 archivo.write(f'{i}[label="{i}"];\n')
-        archivo.write(f'apuntador[label="",shape="point"];\n')
-        archivo.write(f'apuntador->{listaafd[3]};\n')
         for i in listatransiciones:
-            archivo.write(f'{i[0]}->{i[2]}[label="{i[1]}"];\n')
+            archivo.write(f'{i[0]}->{i[3]}[label="{i[1]},{i[2]};{i[4]}"];\n')
         archivo.write("}")
         archivo.close()
-        os.system(f"dot -Tpng {listaafd[0]}.dot -o {listaafd[0]}.png ")
+        os.system(f"dot -Tpng {listaescogida[0]}.dot -o {listaescogida[0]}.png ")
 
 
 

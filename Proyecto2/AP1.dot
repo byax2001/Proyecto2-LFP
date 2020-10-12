@@ -1,0 +1,14 @@
+digraph AP1{
+node[style="filled", shape=circle, fillcolor="white"];
+rankdir=LR;I[label="I"];
+A[label="A"];
+B[label="B"];
+C[label="C"];
+F[label="F",shape="doublecircle"];
+I->A[label="$,$;#"];
+A->B[label="a,$;a"];
+B->B[label="a,$;a"];
+B->C[label="b,a;$"];
+C->C[label="b,a;$"];
+C->F[label="$,#;$"];
+}
