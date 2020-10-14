@@ -5,7 +5,7 @@ class Pila:
 
     def IngresoAutomataPila(self):
 
-        archivo=open(f"{self.nombre}.adp",'r')
+        archivo=open(f"{self.nombre}.ap",'r')
         lista=archivo.readlines()
         archivo.close()
         listaautomatas=[]
@@ -40,7 +40,6 @@ class Pila:
             parte1=[]
             parte2=[]
             parte3=[]
-            print(Estadodeaceptacion)
             while la[n]!="%":
                 parte1=la[n].split(";")
                 parte2=parte1[0].split(",")
