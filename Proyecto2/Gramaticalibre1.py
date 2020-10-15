@@ -13,6 +13,7 @@ class Glibre:
         for i in lista:
             listaGl.append(i.rstrip("\n"))
         Automatadepila=Glibre.Organizar(listaGl)
+        Automatadepila=Glibre.Descartar(Automatadepila)
         return Automatadepila
 
     def Organizar(la):
@@ -49,3 +50,31 @@ class Glibre:
             if la[n]=="%":
                 n+=1
         return listaorganizada
+    #descartar los que no cumplan con ser gramaticas libres del contexto
+    #que posea algun elemento de tamaño 4 o que posea un elemento en el que su segundo valor sea un no terminal (noterminal>noterminal)
+    def Descartar(la):
+
+
+        listadescarte=[]
+        for i in la:
+            n = 0
+            t = 0
+            n1 = 0
+            for k in i[4]:
+                if len(k)==4:
+                    t+=1
+                n=Glibre.ExisteEnNt(i[1],k[1])
+                if n>0:
+                    n1+=1
+            if t>0 or n1>0:
+                listadescarte.append(i)
+        return listadescarte
+
+    def ExisteEnNt(lnoterminales,signo):
+        n=0
+        for i in lnoterminales:
+            if i==signo:
+                n+=1
+        return n
+
+
