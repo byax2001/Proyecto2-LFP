@@ -1,9 +1,12 @@
 import Menus
 import Gramaticalibre1
+import Gramaticalibre2
 import Gramaticalibre3
+import Gramaticalibre4
 import AutomataPila1
 import AutomataPila2
-import Gramaticalibre2
+
+
 import time
 from io import open
 
@@ -56,6 +59,18 @@ while opcion!=4:
                     info=Gramaticalibre3.Arboldev(Glibre[numero-1])
                     info.generarArbol()
 
+            elif n==4:
+                index=0
+                print("\n ----------------------Generar Automata de Pila Equivalente-------------------")
+                if len(Glibre) == 0:
+                    print("-----------------No existen gramaticas ingresadas-------------")
+                else:
+                    for i in Glibre:
+                        index+=1
+                        print(f'{index}.{i}')
+                    name=input("Ingrese el nombre de la Gramatica libre de contexto para generar automata equivalente: ")
+                    ingreso2=Gramaticalibre4.AutomataPequivalente(name,Glibre)
+                    ingreso2.PdfPila()
 
 
             Menu.MenuGramaticalibre()
