@@ -70,23 +70,36 @@ class AutomataPequivalente:
         for i in estados:
             if i=="f":
                 archivo.write(f'{i}[label="{i}",shape="doublecircle"];\n')
+            elif i=="q":
+                archivo.write(f'{i}[label="{i}",height="1"];\n')
             else:
                 archivo.write(f'{i}[label="{i}"];\n')
         archivo.write(f'guia[label=" ",shape="point"];\n')
-        archivo.write("guia->i\n")
+        archivo.write("guia->i[arrowsize=3]\n")
         archivo.write('i->p[label="$,$;#"]\n')
-        archivo.write(f'p->q[label="$,$;{inicial[0]}"]\n')
-        produccion=""
-        for i in producciones:
-            for z in i:
-                for k in range(len(z)):
-                    if k!=0:
-                        produccion=produccion+i[k]
-            archivo.write(f'q->q[label="$,{i[0]};{produccion}"]\n')
+        archivo.write(f'p->q[label="$,$;{inicial[0]}",tailport="e",headport="nw"]\n')
+
+
+        n=(int(len(producciones)/3))
+        n1=2*n
+
+        for i in range(len(producciones)):
+            produccion = ""
+            for z in range(len(producciones[i])):
+                if z!=0:
+                    produccion = produccion+producciones[i][z]
+            if i<=n:
+                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}",tailport="n",headport="n"]\n')
+            elif i>n and i<=n1:
+                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}",tailport="e",headport="e"]\n')
+            elif i>n1:
+                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}",tailport="w",headport="w"]\n')
+
+
 
         for i in terminales:
-            archivo.write(f'q->q[label="{i},{i};$"];\n')
-        archivo.write('q->f[label="$,#;$"]\n')
+            archivo.write(f'q->q[label="{i},{i};$",tailport="s",headport="s"];\n')
+        archivo.write('q->f[label="$,#;$",minlen="1.0",tailport="se",arrowsize="0.5"]\n')
         archivo.write("}")
         archivo.close()
         os.system(f"dot -Tpng {nombre}.dot -o {nombre}.png ")
