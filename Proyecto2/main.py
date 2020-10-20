@@ -7,6 +7,7 @@ import AutomataPila1
 import AutomataPila2
 import AutomataPila3
 import AutomataPila4
+import AutomataPila5
 
 from io import open
 
@@ -108,9 +109,9 @@ while opcion!=4:
                     for i in Automatapila:
                         n+=1
                         print(f'{n}.{i}')
-                    numero=int(input("\nIngrese el numero de la gramatica que desea escoger: "))
+                    nombre=input("\nEscriba el nombre de la gramatica con la que desea evaluar: ")
                     cadena=input("Ingrese la cadena a evaluar: ")
-                    validacion=AutomataPila3.Validacion(Automatapila[numero-1],cadena)
+                    validacion=AutomataPila3.Validacion(Automatapila,nombre,cadena)
                     v=validacion.validar()
                     if v==True:
                         print("La cadena es valida")
@@ -125,10 +126,23 @@ while opcion!=4:
                     for i in Automatapila:
                         n+=1
                         print(f'{n}.{i}')
-                    numero=int(input("\nIngrese el numero de la gramatica que desea escoger: "))
+                    nombre=input("\nEscriba el nombre de la gramatica con la que desea evaluar: ")
                     cadena=input("Ingrese la cadena a evaluar: ")
-                    validacion=AutomataPila4.Validacion(Automatapila[numero-1],cadena)
+                    validacion=AutomataPila4.Validacion(Automatapila,nombre,cadena)
                     validacion.Rvalidar()
+            elif n==5:
+                n=0
+                print("\n--------------Recorrido Paso a Paso-------------------")
+                if len(Automatapila) == 0:
+                    print("-----------------No existen gramaticas ingresadas-------------")
+                else:
+                    for i in Automatapila:
+                        n+=1
+                        print(f'{n}.{i}')
+                    nombre=input("\nEscriba el nombre de la gramatica con la que desea evaluar: ")
+                    cadena=input("Ingrese la cadena a evaluar: ")
+                    validacion=AutomataPila5.Validacion(Automatapila,nombre,cadena)
+                    validacion.Rivalidar()
 
             Menu.AutomatasdePila()
             n = Menu.OpcionCorrecta(7)
