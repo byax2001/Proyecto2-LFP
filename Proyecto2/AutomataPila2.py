@@ -9,7 +9,8 @@ class PdfPilaAutomata:
 
     def reporte(self):
         index=PdfPilaAutomata.existe(self)
-        if index==-1:
+        index2 = PdfPilaAutomata.existe2(self)
+        if index2==-1:
             print("No existe dicho automata de pila")
         else:
             l=self.lista[index]
@@ -65,15 +66,15 @@ class PdfPilaAutomata:
         listatransiciones=listaescogida[6]
         listaestados=listaescogida[3]
         nombre=listaescogida[0]
+        Eaceptacion=listaescogida[5]
         archivo=open(f"{nombre}.dot","w")
         archivo.write("digraph "+nombre+"{\n")
         archivo.write('node[style="filled", shape=circle, fillcolor="white"];\n')
-        archivo.write('rankdir=LR;')
+        archivo.write('rankdir=LR;\n')
         for i in listaestados:
             n=0
-            for z in listaescogida[5]:
-                if z==i:
-                    n+=1
+            if i==Eaceptacion:
+                n+=1
             if n>0:
                 archivo.write(f'{i}[label="{i}",shape="doublecircle"];\n')
             else:
@@ -82,12 +83,16 @@ class PdfPilaAutomata:
             archivo.write(f'{i[0]}->{i[3]}[label="{i[1]},{i[2]};{i[4]}"];\n')
         archivo.write("}")
         archivo.close()
-        os.system(f"dot -Tpng {listaescogida[0]}.dot -o {listaescogida[0]}.png ")
+        os.system(f"dot -Tpng {nombre}.dot -o {nombre}.png ")
 
 
-
-
-
+    def existe2(self):
+        n = -1
+        for i in self.lista:
+            if i[0] == self.nombre:
+                n += 1
+                break
+        return n
     def existe(self):
         n=-1
         for i in self.lista:

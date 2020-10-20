@@ -5,9 +5,9 @@ import Gramaticalibre3
 import Gramaticalibre4
 import AutomataPila1
 import AutomataPila2
+import AutomataPila3
+import AutomataPila4
 
-
-import time
 from io import open
 
 
@@ -35,7 +35,7 @@ while opcion!=4:
                 index=0
                 print("\n--------------------Informacion General de las Gramaticas libres del contexto-------------")
                 if len(Glibre)==0:
-                    print("-----------------No existen gramaticas ingresadas-------------")
+                    print("-----------------No hay gramaticas ingresadas-------------")
                 else:
                     for i in Glibre:
                         index+=1
@@ -88,13 +88,47 @@ while opcion!=4:
                 ingreso=AutomataPila1.Pila(nombre)
                 Automatapila=ingreso.IngresoAutomataPila()
             elif n==2:
+                n = 0
                 print("\n--------------Informacion de Automata-------------------")
-                for i in Automatapila:
-                    print(i)
-                nombre=input("Ingrese el nombre de un Automata de pila: ")
-                pdfpila=AutomataPila2.PdfPilaAutomata(nombre,Automatapila)
-                pdfpila.reporte()
-
+                if len(Automatapila)==0:
+                    print("-----------------No existen gramaticas ingresadas-------------")
+                else:
+                    for i in Automatapila:
+                        n += 1
+                        print(f'{n}.{i}')
+                    nombre=input("Ingrese el nombre de un Automata de pila: ")
+                    pdfpila=AutomataPila2.PdfPilaAutomata(nombre,Automatapila)
+                    pdfpila.reporte()
+            elif n==3:
+                n=0
+                print("\n--------------Validacion de Cadenas-------------------")
+                if len(Automatapila) == 0:
+                    print("-----------------No existen gramaticas ingresadas-------------")
+                else:
+                    for i in Automatapila:
+                        n+=1
+                        print(f'{n}.{i}')
+                    numero=int(input("\nIngrese el numero de la gramatica que desea escoger: "))
+                    cadena=input("Ingrese la cadena a evaluar: ")
+                    validacion=AutomataPila3.Validacion(Automatapila[numero-1],cadena)
+                    v=validacion.validar()
+                    if v==True:
+                        print("La cadena es valida")
+                    else:
+                        print("La cadena es invalida")
+            elif n==4:
+                n=0
+                print("\n--------------Ruta de Validacion-------------------")
+                if len(Automatapila) == 0:
+                    print("-----------------No existen gramaticas ingresadas-------------")
+                else:
+                    for i in Automatapila:
+                        n+=1
+                        print(f'{n}.{i}')
+                    numero=int(input("\nIngrese el numero de la gramatica que desea escoger: "))
+                    cadena=input("Ingrese la cadena a evaluar: ")
+                    validacion=AutomataPila4.Validacion(Automatapila[numero-1],cadena)
+                    validacion.Rvalidar()
 
             Menu.AutomatasdePila()
             n = Menu.OpcionCorrecta(7)

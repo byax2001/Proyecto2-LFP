@@ -12,7 +12,8 @@ class AutomataPequivalente:
 
         lGl=self.listaGl
         index=AutomataPequivalente.existe(self)
-        if index==-1:
+        index2= AutomataPequivalente.existe2(self)
+        if index2==-1:
             print("\nNo existe dicha Gramaticca libre del contexto\n")
         else:
             Glescogida=lGl[index]
@@ -104,10 +105,13 @@ class AutomataPequivalente:
         archivo.close()
         os.system(f"dot -Tpng {nombre}.dot -o {nombre}.png ")
 
-
-
-
-
+    def existe2(self):
+        n = -1
+        for i in self.listaGl:
+            if i[0] == self.nombre:
+                n += 1
+                break
+        return n
 
     def existe(self):
         n=-1
