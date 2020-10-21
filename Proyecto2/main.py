@@ -8,6 +8,7 @@ import AutomataPila2
 import AutomataPila3
 import AutomataPila4
 import AutomataPila5
+import AutomataPIla6
 
 from io import open
 
@@ -17,7 +18,7 @@ Glibre=[]
 Automatapila=[]
 
 Menu= Menus.Menu('Brandon Oswaldo Yax Campos',201800534)
-#Menu.Bienvenida()
+Menu.Bienvenida()
 Menu.MenuPrincipal()
 opcion=Menu.OpcionCorrecta(3)
 while opcion!=4:
@@ -143,6 +144,19 @@ while opcion!=4:
                     cadena=input("Ingrese la cadena a evaluar: ")
                     validacion=AutomataPila5.Validacion(Automatapila,nombre,cadena)
                     validacion.Rivalidar()
+            elif n==6:
+                n=0
+                print("\n---------------Validar cadena en una pasada-------------------")
+                if len(Automatapila) == 0:
+                    print("-----------------No existen gramaticas ingresadas-------------")
+                else:
+                    for i in Automatapila:
+                        n+=1
+                        print(f'{n}.{i}')
+                    nombre=input("\nEscriba el nombre de la gramatica con la que desea evaluar: ")
+                    cadena=input("Ingrese la cadena a evaluar: ")
+                    validacion=AutomataPIla6.Validacion(Automatapila,nombre,cadena)
+                    validacion.ValidarPasada()
 
             Menu.AutomatasdePila()
             n = Menu.OpcionCorrecta(7)
