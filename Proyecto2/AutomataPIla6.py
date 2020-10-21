@@ -1,3 +1,5 @@
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
 from io import open
 import os
 
@@ -91,9 +93,19 @@ class Validacion:
                 print("\n-----------La cadena es valida-----------")
                 nfinal=1
                 Validacion.GenerarTabla(nombre,tusadas,Lpilas,Lcadenas,nfinal)
+                Validacion.GenerarPdf(nombre)
             else:
                 print("\n-----------------La cadena es invalida----------------")
                 Validacion.GenerarTabla(nombre, tusadas, Lpilas, Lcadenas, nfinal)
+                Validacion.GenerarPdf(nombre)
+    def GenerarPdf(nombre):
+        w, h = A4
+        Titulodocumento = f"Nombre:{nombre}"
+        pdf = canvas.Canvas(f"{nombre}.pdf", pagesize=A4)
+        pdf.drawString(w - (w / 2) - len(Titulodocumento) - 10, h - 50, Titulodocumento)
+        pdf.drawImage(f"{nombre}.png", w - (w / 2) - 130, h -410, width=300, height=350)
+        pdf.save()
+        os.system(f"{nombre}.pdf")
 
     def GenerarTabla(nombre,tusadas,Lpilas,Lcadenas,nfinal):
         num=0
@@ -137,7 +149,6 @@ class Validacion:
         archivo.write("}")
         archivo.close()
         os.system(f"dot -Tpng {nombre}.dot -o {nombre}.png ")
-        os.system(f"{nombre}.png")
 
 
     def existencia(ltransiciones, actual, letra):
