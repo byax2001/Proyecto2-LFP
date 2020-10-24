@@ -8,12 +8,12 @@ class Arboldev:
 
 
     def generarArbol(self):
-        existe=Arboldev.existe(self)
-        if existe==-1:
+        existe2=Arboldev.existe(self)
+        if existe2==-1:
             print("El nombre de la gramatica indicada no existe")
         else:
-            existe2=Arboldev.existe2(self)
-            listaescogida=self.listaGl[existe2]
+            existe=Arboldev.existe(self)
+            listaescogida=self.listaGl[existe]
             # Nombre,noterminales,terminales,Noterminalinicial,producciones
             nombre = listaescogida[0]
             listaNt = listaescogida[1]

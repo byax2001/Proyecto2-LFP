@@ -9,9 +9,9 @@ import AutomataPila3
 import AutomataPila4
 import AutomataPila5
 import AutomataPIla6
+import os
 
 from io import open
-
 
 #transicion de pilas: estadoinicio, simbolo que se lee de la pila la pila, simbolo que se extrae de la pila estado receptor,simbolo insertado a la pila
 Glibre=[]
@@ -24,16 +24,19 @@ opcion=Menu.OpcionCorrecta(3)
 while opcion!=4:
 #-------------------------------------------------MODULO 1----------------------------------------------------
     if opcion==1:
+        Menu.clear()
         # Nombre,noterminales,terminales,Noterminalinicial,producciones
         Menu.MenuGramaticalibre()
         n=Menu.OpcionCorrecta(5)
         while n!=5:
             if n==1:
+                Menu.clear()
                 print("\n ---------------------Ingreso de Gramaticas libres del contexto------------------")
                 nombre = input("Ingrese el nombre de un archivo .glc : ")
                 ingreso=Gramaticalibre1.Glibre(nombre)
                 Glibre=ingreso.IngresoGlibre()
             elif n==2:
+                Menu.clear()
                 index=0
                 print("\n--------------------Informacion General de las Gramaticas libres del contexto-------------")
                 if len(Glibre)==0:
@@ -48,6 +51,7 @@ while opcion!=4:
                     info.Impresioninformacion()
                     print("")
             elif n==3:
+                Menu.clear()
                 index = 0
                 print("\n ----------------------Arboles de Derivación-------------------")
                 if len(Glibre)==0:
@@ -62,6 +66,7 @@ while opcion!=4:
                     info.generarArbol()
 
             elif n==4:
+                Menu.clear()
                 index=0
                 print("\n ----------------------Generar Automata de Pila Equivalente-------------------")
                 if len(Glibre) == 0:
@@ -81,15 +86,18 @@ while opcion!=4:
 
 #--------------------------------------------------MODULO 2---------------------------------------------------
     if opcion==2:
+        Menu.clear()
         Menu.AutomatasdePila()
         n=Menu.OpcionCorrecta(7)
         while n!=7:
             if n==1:
+                Menu.clear()
                 print("-------------Ingreso de Automatas de Pila---------------")
                 nombre=input("Ingrese el nombre de un archivo .ap : ")
                 ingreso=AutomataPila1.Pila(nombre)
                 Automatapila=ingreso.IngresoAutomataPila()
             elif n==2:
+                Menu.clear()
                 n = 0
                 print("\n--------------Informacion de Automata-------------------")
                 if len(Automatapila)==0:
@@ -102,6 +110,7 @@ while opcion!=4:
                     pdfpila=AutomataPila2.PdfPilaAutomata(nombre,Automatapila)
                     pdfpila.reporte()
             elif n==3:
+                Menu.clear()
                 n=0
                 print("\n--------------Validacion de Cadenas-------------------")
                 if len(Automatapila) == 0:
@@ -115,10 +124,11 @@ while opcion!=4:
                     validacion=AutomataPila3.Validacion(Automatapila,nombre,cadena)
                     v=validacion.validar()
                     if v==True:
-                        print("La cadena es valida")
+                        print("---------La cadena es valida-------------\n")
                     else:
-                        print("La cadena es invalida")
+                        print("-------------La cadena es invalida-------------\n")
             elif n==4:
+                Menu.clear()
                 n=0
                 print("\n--------------Ruta de Validacion-------------------")
                 if len(Automatapila) == 0:
@@ -132,6 +142,7 @@ while opcion!=4:
                     validacion=AutomataPila4.Validacion(Automatapila,nombre,cadena)
                     validacion.Rvalidar()
             elif n==5:
+                Menu.clear()
                 n=0
                 print("\n--------------Recorrido Paso a Paso-------------------")
                 if len(Automatapila) == 0:
@@ -145,6 +156,7 @@ while opcion!=4:
                     validacion=AutomataPila5.Validacion(Automatapila,nombre,cadena)
                     validacion.Rivalidar()
             elif n==6:
+                Menu.clear()
                 n=0
                 print("\n---------------Validar cadena en una pasada-------------------")
                 if len(Automatapila) == 0:

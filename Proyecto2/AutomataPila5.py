@@ -80,9 +80,9 @@ class Validacion:
             if n==len(cadena) and len(pila)==0:
                 nfinal+=1
                 Validacion.generarImagen(AP, pila, tusadas[len(tusadas) - 1], pcadena, num,nfinal,Ea)
-                print("\n-----------La cadena es valida-----------")
+                print("\n-----------La cadena es valida-----------\n")
             else:
-                print("\n-----------------La cadena es invalida----------------")
+                print("\n-----------------La cadena es invalida----------------\n")
 
 #Para generar la imagen
     def generarImagen(listaescogida,pila,tusada,pcadena,numero,nfinal,Ea):

@@ -90,12 +90,12 @@ class Validacion:
                 tusadas.pop((len(tusadas)-1))
 
             if n==len(cadena) and len(pila)==0:
-                print("\n-----------La cadena es valida-----------")
+                print("\n-----------La cadena es valida-----------\n")
                 nfinal=1
                 Validacion.GenerarTabla(nombre,tusadas,Lpilas,Lcadenas,nfinal)
                 Validacion.GenerarPdf(nombre)
             else:
-                print("\n-----------------La cadena es invalida----------------")
+                print("\n-----------------La cadena es invalida----------------\n")
                 Validacion.GenerarTabla(nombre, tusadas, Lpilas, Lcadenas, nfinal)
                 Validacion.GenerarPdf(nombre)
     def GenerarPdf(nombre):

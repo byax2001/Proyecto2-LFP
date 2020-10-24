@@ -78,7 +78,7 @@ class AutomataPequivalente:
         archivo.write(f'guia[label=" ",shape="point"];\n')
         archivo.write("guia->i[arrowsize=3]\n")
         archivo.write('i->p[label="$,$;#"]\n')
-        archivo.write(f'p->q[label="$,$;{inicial[0]}",tailport="e",headport="nw"]\n')
+        archivo.write(f'p->q[label="$,$;{inicial[0]}"]\n')
 
 
         n=(int(len(producciones)/3))
@@ -89,18 +89,24 @@ class AutomataPequivalente:
             for z in range(len(producciones[i])):
                 if z!=0:
                     produccion = produccion+producciones[i][z]
-            if i<=n:
-                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}",tailport="n",headport="n"]\n')
-            elif i>n and i<=n1:
-                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}",tailport="e",headport="e"]\n')
-            elif i>n1:
-                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}",tailport="w",headport="w"]\n')
+            if i==0:
+                archivo.write(f'q->q[label="$,{producciones[i][0]};{produccion}\n')
+            elif i==(len(producciones)-1):
+                archivo.write(f'$,{producciones[i][0]};{produccion}"];\n')
+            else:
+                archivo.write(f'$,{producciones[i][0]};{produccion}\n')
 
 
 
         for i in terminales:
-            archivo.write(f'q->q[label="{i},{i};$",tailport="s",headport="s"];\n')
-        archivo.write('q->f[label="$,#;$",minlen="1.0",tailport="se",arrowsize="0.5"]\n')
+            if i==terminales[0]:
+                archivo.write(f'q->q[label="{i},{i};$\n')
+            elif i==terminales[len(terminales)-1]:
+                archivo.write(f'{i},{i};$",headport="s",tailport="s"];\n')
+            else:
+                archivo.write(f'{i},{i};$\n')
+
+        archivo.write('q->f[label="$,#;$",minlen="1.0",arrowsize="0.5"]\n')
         archivo.write("}")
         archivo.close()
         os.system(f"dot -Tpng {nombre}.dot -o {nombre}.png ")

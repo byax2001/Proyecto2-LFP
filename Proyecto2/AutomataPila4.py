@@ -59,12 +59,12 @@ class Validacion:
                 tusadas.pop((len(tusadas)-1))
 
             if n==len(cadena) and len(pila)==0:
-                print("\n-----------La cadena es valida-----------")
+                print("\n-----------La cadena es valida-----------\n")
                 for z in tusadas:
                     T=f'{z[0]},{z[1]},{z[2]};{z[4]},{z[3]}'
                     print(T)
             else:
-                print("\n-----------------La cadena es invalida----------------")
+                print("\n-----------------La cadena es invalida----------------\n")
 
 
     def existencia(ltransiciones,actual,letra):
