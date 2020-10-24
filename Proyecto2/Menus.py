@@ -59,6 +59,10 @@ class Menu:
             time.sleep(1)
 
     def clear(self):
-       print('\n'*50)
+        if os.name=="nt":
+           os.system("cls")
+        else:
+            os.system("clear")
+
 
 

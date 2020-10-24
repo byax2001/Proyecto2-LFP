@@ -56,9 +56,9 @@ while opcion!=4:
                     for i in Glibre:
                         index+=1
                         print(f"{index}.{i}")
-                    numero=int(input("Ingrese el numero de la Gramatica libre para realizar el arbol: "))
+                    nombre=input("Ingrese el nombre de la Gramatica libre para realizar el arbol: ")
                     print("")
-                    info=Gramaticalibre3.Arboldev(Glibre[numero-1])
+                    info=Gramaticalibre3.Arboldev(Glibre,nombre)
                     info.generarArbol()
 
             elif n==4:
@@ -162,6 +162,7 @@ while opcion!=4:
             n = Menu.OpcionCorrecta(7)
 
     if opcion==3:
+        Menu.clear()
         Menu.Salir()
         break
     Menu.MenuPrincipal()
